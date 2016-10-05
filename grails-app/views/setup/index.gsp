@@ -9,6 +9,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'setup.css')}" type="text/css">
     <title>Setup</title>
 </head>
 
@@ -20,5 +21,8 @@
     <g:textField name="password" value="${configuration.password}"/><br/>
     <g:actionSubmit value="Save"/>
 </g:form>
+<g:if test="${flash.message}">
+    <div class="message" role="status">${flash.message}</div>
+</g:if>
 </body>
 </html>

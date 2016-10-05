@@ -11,7 +11,12 @@ class SetupController {
 
     def save() {
         def configuration = new Configuration(params)
-        configuration = configurationService.saveConfiguration(configuration.getUsername(), configuration.getPassword())
-        render(view: 'index.gsp', model: [configuration: configuration])
+        try {
+            configurationService.saveConfiguration(configuration.getUsername(), configuration.getPassword())
+            flash.message = 'Success!'
+        } catch (Exception e) {
+            flash.message = 'Fail!'
+        }
+        redirect(action: 'index')
     }
 }
