@@ -24,13 +24,13 @@ class ConfigurationService {
      */
     def saveConfiguration(String username, String password) {
         def configurationList = Configuration.getAll()
-        if (configurationList.isEmpty()) {
-            def configuration = new Configuration()
-        } else {
-            def configuration = configurationList.get(0)
+        def configuration = new Configuration();
+        if (!configurationList.isEmpty()) {
+            configuration = configurationList.get(0)
         }
-        configuration.username = username
-        configuration.password = password
+
+        configuration.username = username.trim()
+        configuration.password = password.trim()
         configuration.save()
         return configuration
     }

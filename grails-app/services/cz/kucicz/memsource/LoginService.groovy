@@ -34,7 +34,7 @@ class LoginService {
             if (JSONDateParser.parse(token.expires).getTime() > now) {
                 log.debug("login [using old token]")
                 // check token credentials
-                if (token.username == username && token.getPasswordHash() == password.hashCode()) {
+                if (token.username == username) {
                     return token.token;
                 } else {
                     throw new LoginException("Invalid username or password")
@@ -59,8 +59,7 @@ class LoginService {
             log.warn("login [Invalid response: ${responseJson}]")
             throw new IOException("Unexpected login response")
         }
-        Token newToken = new Token(username: username, passwordHash: password.hashCode(),
-                token: tokenJson.token, expires: tokenJson.expires)
+        Token newToken = new Token(username: username, token: tokenJson.token, expires: tokenJson.expires)
         log.debug("login [token: ${newToken}]")
         // save new tokenJson
         newToken.save()
