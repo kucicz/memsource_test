@@ -16,7 +16,7 @@ class ProjectsController {
 
     def getProjectList = {
         try {
-            log.info("getProjects called [userName=${params.get("userName")}]")
+            log.info("getProjects called")
             // get username and password
             def credentials = configurationService.getConfiguration()
             if (!StringUtils.hasText(credentials.username) || !StringUtils.hasText(credentials.password)) {
