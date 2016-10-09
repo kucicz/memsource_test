@@ -2,6 +2,11 @@ package cz.kucicz.memsource
 
 class Configuration {
 
+    static constraints = {
+        username blank: false
+        password blank: false
+    }
+
     String username;
     String password;
 
