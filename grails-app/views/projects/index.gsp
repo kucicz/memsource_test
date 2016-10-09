@@ -3,7 +3,7 @@
 <head>
     <meta name="layout" content="main"/>
     <title>Ajax First Example</title>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'project.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'projects.css')}" type="text/css">
     <g:javascript plugin="jquery" library="jquery"/>
     <script>
         $(document).ready(function () {
@@ -51,9 +51,9 @@
 </head>
 
 <body>
-<label for="userName">username:</label>
+<label for="userName">Username:</label>
 <input id="userName" type="text" size="20"/>
-<label for="password">password:</label>
+<label for="password">Password:</label>
 <input id="password" type="password" size="20"/>
 <button id="projectsButton">Get Projects</button>
 
