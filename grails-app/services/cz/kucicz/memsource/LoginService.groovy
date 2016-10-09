@@ -15,6 +15,14 @@ class LoginService {
     private static final String ACTION = 'api/v3/auth/login';
     private static final String URL = 'https://cloud.memsource.com/web/';
 
+    /**
+     * Get authorization token from memsource API
+     * @param username username
+     * @param password password
+     * @return authorization token
+     * @throws LoginException in case of wrong credentials
+     * @throws IOException in case of unexpected response
+     */
     def login(String username, String password) {
         log.debug("login [username=$username]")
         // check existing tokenJson

@@ -11,6 +11,12 @@ class ProjectsService {
     private static final String ACTION = 'api/v3/project/list';
     private static final String URL = 'https://cloud.memsource.com/web/';
 
+    /**
+     * Get list of projects from memsource API
+     * @param token - autorization token
+     * @return list of projects
+     * @throws RuntimeException in case of failure
+     */
     def getProjects(String token) {
         log.debug("getProjects")
         Map<String, String> parameters = new HashMap<>();
