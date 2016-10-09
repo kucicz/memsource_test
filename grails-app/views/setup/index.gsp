@@ -7,11 +7,16 @@
 </head>
 
 <body>
+<div class="buttonDiv">
+    <g:link controller="projects" action="index" name="goToProjects">
+        Projects
+    </g:link>
+</div>
 <g:form controller="setup" action="save">
     <label>Username:</label>
     <g:textField name="username" value="${configuration.username}"/><br/>
     <label>Password:</label>
-    <g:textField name="password" value="${configuration.password}"/><br/>
+    <g:field type="password" name="password" value="${configuration.password}"/><br/>
     <g:actionSubmit value="Save"/>
 </g:form>
 <g:if test="${flash.message}">

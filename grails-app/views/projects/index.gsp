@@ -7,37 +7,37 @@
     <g:javascript plugin="jquery" library="jquery"/>
     <script>
         $(document).ready(function () {
-            $('#projectsButton').click(function () {
-                clearMessage();
-                $('#table').find('tr').remove();
-                $.ajax({
-                    url: 'getprojects',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {userName: $("#userName").val(), password: $("#password").val()},
-                    success: function (data) {
-                        // process response
-                        var tableContent = "";
-                        $.each(data, function (index) {
-                            tableContent += "<tr>";
-                            tableContent += "<td>" + data[index].name + "</td>";
-                            tableContent += "<td>" + data[index].status + "</td>";
-                            tableContent += "<td>" + data[index].sourceLanguage + "</td>";
-                            tableContent += "<td>" + data[index].targetLanguages + "</td>";
-                            tableContent += "</tr>";
-                        });
-                        if (tableContent != "") {
-                            // fill new data to table
-                            $('#table').append(createTableHeader()).append(tableContent);
-                        } else {
-                            alert("No projects available");
-                        }
-                    },
-                    error: function (data) {
-                        document.getElementById("message").innerHTML = data.responseJSON.error;
+            //     $('#projectsButton').click(function () {
+            clearMessage();
+            $('#table').find('tr').remove();
+            $.ajax({
+                url: 'getprojects',
+                type: 'POST',
+                dataType: 'json',
+                //data: {userName: $("#userName").val(), password: $("#password").val()},
+                success: function (data) {
+                    // process response
+                    var tableContent = "";
+                    $.each(data, function (index) {
+                        tableContent += "<tr>";
+                        tableContent += "<td>" + data[index].name + "</td>";
+                        tableContent += "<td>" + data[index].status + "</td>";
+                        tableContent += "<td>" + data[index].sourceLanguage + "</td>";
+                        tableContent += "<td>" + data[index].targetLanguages + "</td>";
+                        tableContent += "</tr>";
+                    });
+                    if (tableContent != "") {
+                        // fill new data to table
+                        $('#table').append(createTableHeader()).append(tableContent);
+                    } else {
+                        alert("No projects available");
                     }
-                });
+                },
+                error: function (data) {
+                    document.getElementById("message").innerHTML = data.responseJSON.error;
+                }
             });
+            //   });
             function createTableHeader() {
                 return "<tr><th>Name</th><th>Status</th><th>Source language</th><th>Target languages</th></tr>";
             }
@@ -51,16 +51,16 @@
 </head>
 
 <body>
-<label for="userName">Username:</label>
-<input id="userName" type="text" size="20"/>
-<label for="password">Password:</label>
-<input id="password" type="password" size="20"/>
-<button id="projectsButton">Get Projects</button>
+<div class="buttonDiv">
+    <g:link controller="setup" action="index" name="goToSetup">
+        Setup
+    </g:link>
+</div>
 
 <div id="result">
-    Result:
-    <div id="message"></div>
     <table id="table"></table>
+
+    <div id="message"></div>
 </div>
 
 </body>
