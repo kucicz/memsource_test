@@ -7,4 +7,15 @@ class Project {
     String sourceLanguage
     List targetLanguages
     static hasMany = [targetLanguages: String]
+
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                ", sourceLanguage='" + sourceLanguage + '\'' +
+                ", targetLanguages=" + targetLanguages +
+                '}';
+    }
 }
