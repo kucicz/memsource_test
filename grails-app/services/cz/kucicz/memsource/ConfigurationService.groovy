@@ -7,18 +7,21 @@ class ConfigurationService {
 
     def getConfiguration() {
         def configurationList = Configuration.getAll()
+        if (configurationList.isEmpty()) {
+            return new Configuration()
+        }
         return configurationList.get(0)
     }
 
     def saveConfiguration(String username, String password) {
         def configurationList = Configuration.getAll()
-        def configuration = configurationList.get(0)
-        if (!username.empty) {
-            configuration.username = username
+        if (configurationList.isEmpty()) {
+            def configuration = new Configuration()
+        } else {
+            def configuration = configurationList.get(0)
         }
-        if (!password.empty) {
-            configuration.password = password
-        }
+        configuration.username = username
+        configuration.password = password
         configuration.save()
         return configuration
     }
