@@ -14,7 +14,7 @@ class ProjectsController {
 
     def getprojects = {
         try {
-            log.debug("getProjects called [userName=${params.get("userName")}]")
+            log.info("getProjects called [userName=${params.get("userName")}]")
             def token = loginService.login(params.get("userName") as String, params.get("password") as String)
             def projects = projectsService.getProjects(token)
             log.debug(projects)

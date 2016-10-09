@@ -12,6 +12,7 @@ class ProjectsService {
     private static final String URL = 'https://cloud.memsource.com/web/';
 
     def getProjects(String token) {
+        log.debug("getProjects")
         Map<String, String> parameters = new HashMap<>();
         parameters.put("token", token);
         String responseJson = HttpUtil.sendPost(URL + ACTION, parameters);

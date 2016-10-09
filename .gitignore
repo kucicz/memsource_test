@@ -1,7 +1,9 @@
-
 /.project
 /.classpath
-/memsource_test.iml
-/memsource_test-grailsPlugins.iml
 /.idea/
 /.slcache/
+.asscache
+out/
+scripts/
+target/
+*.iml
