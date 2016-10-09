@@ -7,14 +7,12 @@
     <g:javascript plugin="jquery" library="jquery"/>
     <script>
         $(document).ready(function () {
-            //     $('#projectsButton').click(function () {
             clearMessage();
             $('#table').find('tr').remove();
             $.ajax({
                 url: 'getprojects',
                 type: 'POST',
                 dataType: 'json',
-                //data: {userName: $("#userName").val(), password: $("#password").val()},
                 success: function (data) {
                     // process response
                     var tableContent = "";
@@ -37,7 +35,6 @@
                     document.getElementById("message").innerHTML = data.responseJSON.error;
                 }
             });
-            //   });
             function createTableHeader() {
                 return "<tr><th>Name</th><th>Status</th><th>Source language</th><th>Target languages</th></tr>";
             }

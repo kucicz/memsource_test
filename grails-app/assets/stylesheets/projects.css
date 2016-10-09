@@ -1,5 +1,18 @@
-label, input {
+button {
     margin: 1em;
+}
+
+td {
+    white-space: pre;
+}
+
+.buttonDiv {
+    float: right;
+    margin: 1em;
+    background-color: #fcfcfc;
+    border: 1px solid #cccccc;
+    font-size: 1em;
+    padding: 0.2em 0.4em;
 }
 
 .hidden {
