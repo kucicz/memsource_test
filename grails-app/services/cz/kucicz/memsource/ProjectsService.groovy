@@ -16,10 +16,20 @@ class ProjectsService {
         parameters.put("token", token);
         String responseJson = HttpUtil.sendPost(URL + ACTION, parameters);
         def jsonObject = JSON.parse(responseJson)
+        if (responseJson.contains('\"errorCode\":') && responseJson.contains('\"errorDescription\":')) {
+            // check response for error
+            log.warn(" [getProjects failed: ${responseJson}]")
+            String errorCode = jsonObject.errorCode as String
+            String errorDescription = jsonObject.errorDescription as String
+            throw new RuntimeException(errorCode + ": " + errorDescription)
+        }
         log.debug(jsonObject)
         // save new token
         def projects = []
-        jsonObject.each { json -> projects << new Project(name: json.name, status: json.status, sourceLanguage: json.sourceLang, targetLanguages: json.targetLangs) }
+        jsonObject.each { json ->
+            projects << new Project(name: json.name, status: json.status,
+                    sourceLanguage: json.sourceLang, targetLanguages: json.targetLangs)
+        }
         return projects
     }
 }

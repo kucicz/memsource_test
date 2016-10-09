@@ -43,7 +43,9 @@ class LoginService {
         def tokenJson = JSON.parse(responseJson)
         if (tokenJson.errorCode != null) {
             log.warn("login [Login failed: ${responseJson}]")
-            throw new LoginException(tokenJson.errorCode as String)
+            String errorCode = tokenJson.errorCode as String
+            String errorDescription = tokenJson.errorDescription as String
+            throw new LoginException(errorCode + ": " + errorDescription)
         }
         if (tokenJson.token == null || tokenJson.expires == null) {
             log.warn("login [Invalid response: ${responseJson}]")
