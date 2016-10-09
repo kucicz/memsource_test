@@ -14,7 +14,7 @@ class ProjectsController {
 
     def index() {}
 
-    def getprojects = {
+    def getProjectList = {
         try {
             log.info("getProjects called [userName=${params.get("userName")}]")
             // get username and password

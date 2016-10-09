@@ -10,7 +10,7 @@
             clearMessage();
             $('#table').find('tr').remove();
             $.ajax({
-                url: 'getprojects',
+                url: 'getProjectList',
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
@@ -56,7 +56,6 @@
 
 <div id="result">
     <table id="table"></table>
-
     <div id="message"></div>
 </div>
 
