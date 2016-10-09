@@ -8,35 +8,42 @@
     <script>
         $(document).ready(function () {
             $('#projectsButton').click(function () {
+                clearMessage();
+                $('#table').find('tr').remove();
                 $.ajax({
                     url: 'getprojects',
                     type: 'POST',
                     dataType: 'json',
-                    data: {username: $("#username").val(), password: $("#password").val()},
+                    data: {userName: $("#userName").val(), password: $("#password").val()},
                     success: function (data) {
                         // process response
-                        var txt = "";
+                        var tableContent = "";
                         $.each(data, function (index) {
-                            txt += "<tr>";
-                            txt += "<td>" + data[index].name + "</td>";
-                            txt += "<td>" + data[index].status + "</td>";
-                            txt += "<td>" + data[index].sourceLanguage + "</td>";
-                            txt += "<td>" + data[index].targetLanguages + "</td>";
-                            txt += "</tr>";
+                            tableContent += "<tr>";
+                            tableContent += "<td>" + data[index].name + "</td>";
+                            tableContent += "<td>" + data[index].status + "</td>";
+                            tableContent += "<td>" + data[index].sourceLanguage + "</td>";
+                            tableContent += "<td>" + data[index].targetLanguages + "</td>";
+                            tableContent += "</tr>";
                         });
-                        if (txt != "") {
-                            // clear table
-                            $('#table tr').remove();
+                        if (tableContent != "") {
                             // fill new data to table
-                            $('#table').append(createTableHeader()).append(txt);
+                            $('#table').append(createTableHeader()).append(tableContent);
                         } else {
                             alert("No projects available");
                         }
+                    },
+                    error: function (data) {
+                        document.getElementById("message").innerHTML = data.responseJSON.error;
                     }
                 });
             });
             function createTableHeader() {
                 return "<tr><th>Name</th><th>Status</th><th>Source language</th><th>Target languages</th></tr>";
+            }
+
+            function clearMessage() {
+                document.getElementById("message").innerHTML = "";
             }
         });
 
@@ -44,12 +51,17 @@
 </head>
 
 <body>
-<label for="username">username:</label>
-<input id="username" type="text" size="20"/>
+<label for="userName">username:</label>
+<input id="userName" type="text" size="20"/>
 <label for="password">password:</label>
 <input id="password" type="password" size="20"/>
 <button id="projectsButton">Get Projects</button>
-<table id="table">
-</table>
+
+<div id="result">
+    Result:
+    <div id="message"></div>
+    <table id="table"></table>
+</div>
+
 </body>
 </html>
